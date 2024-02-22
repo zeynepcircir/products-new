@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { HeaderComponent } from './header/header.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+
 
 import { RouterModule } from '@angular/router';
+import { PublicLayoutComponent } from './public-layout/public-layout.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { RouterModule } from '@angular/router';
   ],
   declarations: [
     HeaderComponent,
-    SidebarComponent
+    PublicLayoutComponent
   ]
 })
 export class LayoutModule { }

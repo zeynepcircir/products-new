@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
-import { CategoriesHeaderModule } from './categories-header/categories-header.module';
 import { EditSectionSidebarModule } from './edit-section-sidebar/edit-section-sidebar.module';
 import { ProductsDataSidebarModule } from './products-data-sidebar/products-data-sidebar.module';
 import { RouterModule, Routes } from '@angular/router';
@@ -26,7 +25,6 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     LayoutModule,
-    CategoriesHeaderModule,
     EditSectionSidebarModule,
     ProductsDataSidebarModule,
     FormsModule
