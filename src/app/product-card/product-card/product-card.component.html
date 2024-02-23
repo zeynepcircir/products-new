@@ -1,24 +1,37 @@
-<div>
-    <app-header (productsBySelectedCategory)="getProductsBySelectedCategory(productList)">
-    </app-header>
-</div>
-
 <div class="card">
-
-    <p-card appHighlight header="{{ product.title }}" [subheader]="product!.category!" styleClass="p-card-shadow"
-        *ngFor="let product of productList" class="cards">
-
-        <ng-template pTemplate="header">
-            <img alt="Card" [src]="product?.image" height="350px"
-                style="object-fit: fill; padding: 0.8rem; border-bottom: 2px solid rgba(165, 165, 165, 0.809);">
-        </ng-template>
-        <p class="description">{{ product?.description }}
-        </p>
-        <ng-template pTemplate="footer" class="button">
-            <p-button  label="Edit" styleClass="p-button-secondary"
-                icon="pi pi-check"></p-button>
-            <p-button label="Delete" styleClass="p-button-secondary" [style]="{'margin-left':'.5em'}" icon="pi pi-times"
-                ></p-button>
-        </ng-template>
-    </p-card>
+  <p-card
+    appHighlight
+    header="{{ product.title }}"
+    [subheader]="product!.category!"
+    styleClass="p-card-shadow"
+    *ngFor="let product of productList"
+    class="cards"
+  >
+    <ng-template pTemplate="header">
+      <img
+        alt="Card"
+        [src]="product?.image"
+        height="350px"
+        style="
+          object-fit: fill;
+          padding: 0.8rem;
+          border-bottom: 2px solid rgba(165, 165, 165, 0.809);
+        "
+      />
+    </ng-template>
+    <p class="description">{{ product?.description }}</p>
+    <ng-template pTemplate="footer" class="button">
+      <p-button
+        label="Edit"
+        styleClass="p-button-secondary"
+        icon="pi pi-check"
+      ></p-button>
+      <p-button
+        label="Delete"
+        styleClass="p-button-secondary"
+        [style]="{ 'margin-left': '.5em' }"
+        icon="pi pi-times"
+      ></p-button>
+    </ng-template>
+  </p-card>
 </div>
