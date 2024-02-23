@@ -1,36 +1,42 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LayoutModule } from './layout/layout.module';
-import { EditSectionSidebarModule } from './edit-section-sidebar/edit-section-sidebar.module';
-import { ProductsDataSidebarModule } from './products-data-sidebar/products-data-sidebar.module';
 import { RouterModule, Routes } from '@angular/router';
-
+import { LayoutModule } from './layout/layout.module';
+import { ProductCardModule } from './product-card/product-card.module';
+import { ProductTableModule } from './product-table/product-table.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
+import { AccordionModule } from 'primeng/accordion'; //accordion and accordion tab
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  }
+    redirectTo: '/product-card',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     LayoutModule,
-    EditSectionSidebarModule,
-    ProductsDataSidebarModule,
-    FormsModule
-
+    ProductCardModule,
+    ProductTableModule,
+    BrowserAnimationsModule,
+    ButtonModule,
+    CardModule,
+    AccordionModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditSectionSidebarComponent } from './edit-section-sidebar.component';
+import { ProductTableComponent } from './product-table.component';
 
-describe('EditSectionSidebarComponent', () => {
-  let component: EditSectionSidebarComponent;
-  let fixture: ComponentFixture<EditSectionSidebarComponent>;
+describe('ProductTableComponent', () => {
+  let component: ProductTableComponent;
+  let fixture: ComponentFixture<ProductTableComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditSectionSidebarComponent ]
+      declarations: [ ProductTableComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditSectionSidebarComponent);
+    fixture = TestBed.createComponent(ProductTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

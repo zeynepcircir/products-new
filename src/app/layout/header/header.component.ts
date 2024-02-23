@@ -1,15 +1,53 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { ProductModel } from 'src/app/models/ProductModel';
+import { ProductService } from 'src/app/services/product.service';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
+
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  categoryList: string[] = [];
+
+  @Output() productsBySelectedCategory: EventEmitter<ProductModel[]> =
+    new EventEmitter<ProductModel[]>();
+
+  
+
+  constructor(
+    private _http: HttpClient,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
+    console.log(this.categoryList);
+    this.getCategories();
   }
 
+  handleClick(event: string | null) {
+    console.log(event);
+    if (event) {
+      //@ts-ignore
+      this.productService.getCategoryProducts(event).subscribe((response) => {
+        this.productsBySelectedCategory.emit(response);
+      });
+    } else {
+      this.productService.getProducts().subscribe((response) => {
+        this.productsBySelectedCategory.emit(response);
+      });
+    }
+  }
+
+  getCategories() {
+    this.productService.getCategories().subscribe((response) => {
+      this.categoryList = response;
+    });
+  }
+
+ 
 }
