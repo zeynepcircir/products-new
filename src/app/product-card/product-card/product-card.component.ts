@@ -4,6 +4,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { ProductModel } from 'src/app/models/ProductModel';
 import { ProductService } from 'src/app/services/product.service';
 
+
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
@@ -23,9 +24,11 @@ export class ProductCardComponent implements OnInit {
 
 
   constructor( private primengConfig: PrimeNGConfig,
-     private _productService: ProductService 
-  
+     private _productService: ProductService,
+
   ) {}
+
+
 
 
   ngOnInit(): void {
@@ -48,6 +51,8 @@ export class ProductCardComponent implements OnInit {
     this.productList = event;
   }
 
+  
+ 
 
 
 }
