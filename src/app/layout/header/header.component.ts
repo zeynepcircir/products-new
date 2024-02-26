@@ -14,8 +14,7 @@ export class HeaderComponent implements OnInit {
 
   categoryList: string[] = [];
 
-  @Output() productsBySelectedCategory: EventEmitter<ProductModel[]> =
-    new EventEmitter<ProductModel[]>();
+  @Output() productsBySelectedCategory = new EventEmitter<ProductModel[]>();
 
   
 
@@ -25,12 +24,10 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.categoryList);
     this.getCategories();
   }
 
   handleClick(event: string | null) {
-    console.log(event);
     if (event) {
       //@ts-ignore
       this.productService.getCategoryProducts(event).subscribe((response) => {

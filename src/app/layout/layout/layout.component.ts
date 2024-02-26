@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { ProductModel } from 'src/app/models/ProductModel';
-
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-layout',
@@ -9,9 +10,11 @@ import { ProductModel } from 'src/app/models/ProductModel';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  constructor(private _router: Router) {}
+  constructor(
+    private _router: Router,
+    private productService: ProductService
+  ) {}
 
- 
   productList: ProductModel[] = [];
 
   ngOnInit(): void {}
@@ -23,6 +26,9 @@ export class LayoutComponent implements OnInit {
     this._router.navigate(['/product-table']);
   }
 
-  
+  getProducts(event: any) {
+    console.log(event);
 
+    this.productService.selectedProductList(event);
+  }
 }

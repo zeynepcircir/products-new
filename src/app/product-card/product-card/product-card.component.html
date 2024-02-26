@@ -1,6 +1,5 @@
 <div>
-    <app-header (productsBySelectedCategory)="getProductsBySelectedCategory(productList)">
-    </app-header>
+    <app-layout></app-layout>
 </div>
 
 <div class="card">
@@ -9,16 +8,17 @@
         *ngFor="let product of productList" class="cards">
 
         <ng-template pTemplate="header">
-            <img alt="Card" [src]="product?.image" height="350px"
-                style="object-fit: fill; padding: 0.8rem; border-bottom: 2px solid rgba(165, 165, 165, 0.809);">
+
+            <a (click)="route2productDetailComponent(product)"> <img alt="Card" [src]="product?.image" height="350px"
+                    style="object-fit: fill; padding: 0.8rem; border-bottom: 2px solid rgba(165, 165, 165, 0.809);">
+            </a>
         </ng-template>
         <p class="description">{{ product?.description }}
         </p>
         <ng-template pTemplate="footer" class="button">
-            <p-button  label="Edit" styleClass="p-button-secondary"
-                icon="pi pi-check"></p-button>
-            <p-button label="Delete" styleClass="p-button-secondary" [style]="{'margin-left':'.5em'}" icon="pi pi-times"
-                ></p-button>
+            <p-button label="Edit" styleClass="p-button-secondary" icon="pi pi-check"></p-button>
+            <p-button label="Delete" styleClass="p-button-secondary" [style]="{'margin-left':'.5em'}"
+                icon="pi pi-times"></p-button>
         </ng-template>
     </p-card>
 </div>

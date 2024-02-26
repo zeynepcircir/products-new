@@ -6,9 +6,10 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { AccordionModule } from 'primeng/accordion';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
-  declarations: [ProductCardComponent],
+  declarations: [ProductCardComponent, ProductDetailComponent],
   imports: [
     CommonModule,
     ProductCardRoutingModule,
