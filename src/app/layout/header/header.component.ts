@@ -9,14 +9,10 @@ import { PrimeNGConfig } from 'primeng/api';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-
 export class HeaderComponent implements OnInit {
-
   categoryList: string[] = [];
 
   @Output() productsBySelectedCategory = new EventEmitter<ProductModel[]>();
-
-  
 
   constructor(
     private _http: HttpClient,
@@ -29,8 +25,9 @@ export class HeaderComponent implements OnInit {
 
   handleClick(event: string | null) {
     if (event) {
-      //@ts-ignore
+      console.log('EVENTE TIKLANDI', event);
       this.productService.getCategoryProducts(event).subscribe((response) => {
+        console.log('API RESPONSE GELDİ VE EMIT EDİLDİ', response);
         this.productsBySelectedCategory.emit(response);
       });
     } else {
@@ -45,6 +42,4 @@ export class HeaderComponent implements OnInit {
       this.categoryList = response;
     });
   }
-
- 
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { log } from 'console';
 import { PrimeNGConfig } from 'primeng/api';
 import { ProductModel } from 'src/app/models/ProductModel';
+import { Location } from '@angular/common';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -11,12 +12,15 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
-  constructor(
-    private _activatedRoute: ActivatedRoute,
-    private _productService: ProductService
-  ) {}
   productName: string = '';
   product: ProductModel | null = null;
+
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _productService: ProductService,
+    private location: Location
+  ) {}
+
   ngOnInit(): void {
     this._activatedRoute.paramMap.subscribe((params) => {
       this.productName = params.get('productName') ?? '';
@@ -30,5 +34,9 @@ export class ProductDetailComponent implements OnInit {
       //@ts-ignore
       this.product = response.find((resp) => resp.title === this.productName);
     });
+  }
+
+  goBack(){ 
+    this.location.back();
   }
 }

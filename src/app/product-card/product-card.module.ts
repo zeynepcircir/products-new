@@ -1,6 +1,6 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ChipModule } from 'primeng/chip';
 import { ProductCardRoutingModule } from './product-card-routing.module';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ButtonModule } from 'primeng/button';
@@ -16,6 +16,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     ButtonModule,
     CardModule,
     AccordionModule,
+    ChipModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

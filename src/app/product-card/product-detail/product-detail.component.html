@@ -1,2 +1,72 @@
-<p>Product Name: {{ productName }}</p>
-<div>{{ product | json }}</div>
+<!-- <p-card header="{{ product?.title }}" [style]="{width: '420px'}" styleClass="shadow-2" class="card">
+    <ng-template pTemplate="header">
+        <div (click)="goBack()" class="left">
+            <i class="pi pi-angle-left" style="font-size: 1.8rem"></i>
+        </div>
+        <img alt="Card" [src]="product?.image" height="450px"
+            style="object-fit: fill; padding: 0.8rem; border-bottom: 2px solid rgba(165, 165, 165, 0.809);">
+
+    </ng-template>
+    <p-button label="{{  product!.category! }}" styleClass="p-mr-2" style="margin-right: 9rem; margin-top: 1rem; height: 10px;"></p-button> <br>
+    <p class="description">{{ product?.description }}</p>
+
+    <ng-template pTemplate="footer">
+        <p-button label="Edit" styleClass="p-button-secondary" icon="pi pi-check"></p-button> &nbsp;
+        <p-button label="Delete" icon="pi pi-times" styleClass="p-button-secondary"></p-button>
+    </ng-template>
+</p-card> -->
+
+<!-- <div class="all">
+    <div class="left" (click)="goBack()">
+        <i class="pi pi-angle-left" style="font-size: 1.8rem"></i>
+    </div>
+    <div class="img">
+        <img alt="Card" [src]="product?.image" height="550px" style="object-fit: fill; padding: 0.8rem; border: 2px solid rgba(165, 165, 165, 0.809);">
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h1>{{ product?.title }}</h1>
+            <p-button label="{{ product!.category! }}" styleClass="p-mr-2" ></p-button>
+            <p-button label="{{ product?.price }}" styleClass="p-mr-2"></p-button>
+        </div>
+        <div class="card-body">
+            <p class="description">{{ product?.description }}</p>
+        </div>
+        <div class="card-footer">
+            <button pButton pRipple type="button" label="Edit" class="p-button-raised p-button-secondary p-button-text"></button>
+            <button pButton pRipple type="button" label="Delete" class="p-button-raised p-button-secondary p-button-text"></button>
+        </div>
+    </div>
+</div> -->
+
+<div class="all ">
+    <div class="left" (click)="goBack()">
+        <i class="pi pi-angle-left" style="font-size: 1.8rem"></i>
+    </div>
+    <div class="row" style="display: flex; justify-content: space-between; width: 100%;">
+        <div class="img" style="width: 50%; display: flex;
+        justify-content: center;
+        align-items: center;">
+            <img alt="Card" [src]="product?.image" height="550px"
+                style="object-fit: fill; padding: 0.8rem; border: 2px solid rgba(165, 165, 165, 0.809);">
+        </div>
+
+        <div class="card" style="width: 50%; display: flex; flex-direction: column;">
+            <div class="card-header">
+                <h1>{{ product?.title }}</h1>
+                <p-button label="{{ product!.category! }}" styleClass="p-mr-2"></p-button>
+                <p-button label="{{ product?.price }}" styleClass="p-mr-2"></p-button>
+            </div>
+            <div class="card-body">
+                <p class="description">{{ product?.description }}</p>
+            </div>
+            <div class="card-footer">
+                <button pButton pRipple type="button" label="Edit"
+                    class="p-button-raised p-button-secondary p-button-text"></button>
+                <button pButton pRipple type="button" label="Delete"
+                    class="p-button-raised p-button-secondary p-button-text"></button>
+            </div>
+        </div>
+    </div>
+</div>

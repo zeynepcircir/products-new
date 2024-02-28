@@ -27,8 +27,7 @@ export class LayoutComponent implements OnInit {
   }
 
   getProducts(event: any) {
-    console.log(event);
-
+    console.log('EMIT EDİLEN VERİ GELDİ', event);
     this.productService.selectedProductList(event);
   }
 }
