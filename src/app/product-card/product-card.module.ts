@@ -7,17 +7,27 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { AccordionModule } from 'primeng/accordion';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductEditComponent } from './product-edit/product-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DialogService } from 'primeng/dynamicdialog';
 
 @NgModule({
-  declarations: [ProductCardComponent, ProductDetailComponent],
+  declarations: [
+    ProductCardComponent,
+    ProductDetailComponent,
+    ProductEditComponent,
+  ],
   imports: [
     CommonModule,
     ProductCardRoutingModule,
     ButtonModule,
     CardModule,
     AccordionModule,
-    ChipModule
+    ChipModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
+  providers: [DialogService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProductCardModule {}

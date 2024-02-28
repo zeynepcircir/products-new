@@ -1,9 +1,6 @@
-*{background: #dedcdc;}
+*{background: #efeaea;}
 
 .card{
-  //  margin-left: 18%;
-    width: 500px;
-    height: 650px;
     margin-top: 2rem;
     
 }    
@@ -13,22 +10,15 @@
 }
 
 .description {
-    // overflow: hidden;
-    //  text-overflow: ellipsis;
-    //  display: -webkit-box; 
-    //  -webkit-line-clamp: 2; 
-    //  -webkit-box-orient: horizontal; 
- 
     text-overflow: ellipsis;
-    width: 550px;
+    width: 500px;
     display: block;
     overflow: hidden;
 }
 
 .img{
-
- //   margin-left: 15%;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     
 }
 
