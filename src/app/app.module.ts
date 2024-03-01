@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutModule } from './layout/layout.module';
 import { ProductCardModule } from './product-card/product-card.module';
-import { ProductTableModule } from './product-table/product-table.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -29,7 +28,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     LayoutModule,
     ProductCardModule,
-    ProductTableModule,
     BrowserAnimationsModule,
     ButtonModule,
     CardModule,

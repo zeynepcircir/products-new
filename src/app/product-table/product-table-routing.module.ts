@@ -1,19 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from '../layout/layout/layout.component';
 import { ProductTableComponent } from './product-table/product-table.component';
+import { ProductCardComponent } from '../product-card/product-card/product-card.component';
 
 
-  const routes: Routes = [
+const routes: Routes = [
   {
-    path: 'product-table',
-    component: LayoutComponent,
-    children: [
-      { path: '', component: ProductTableComponent }
-    ]
+       path: 'product-table', 
+       component: ProductTableComponent ,
   }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

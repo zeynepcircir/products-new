@@ -2,17 +2,24 @@
     <app-layout></app-layout>
 </div>
 
-<div class="card">
+<button (click)="toggleView('cards')">🗃️Card</button>
+<button (click)="toggleView('table')">📊Table</button>
 
-    <p-card appHighlight header="{{ product.title }}" [subheader]="product!.category!" styleClass="p-card-shadow"
-        *ngFor="let product of productList" class="cards">
+
+<div *ngIf="viewMode === 'cards'" class="card cards-container">
+
+    <p-card appHighlight header="{{ product.title }}"  [subheader]="product!.category!" styleClass="p-card-shadow"
+        *ngFor="let product of productList" class="cards" >
 
         <ng-template pTemplate="header">
 
-            <a (click)="route2productDetailComponent(product)"> <img alt="Card" [src]="product?.image" height="350px"
+            <a (click)="route2productDetailComponent(product)"> <img alt="Card" [src]="" height="350px"
                     style="object-fit: fill; padding: 0.8rem; border-bottom: 2px solid rgba(165, 165, 165, 0.809);">
             </a>
         </ng-template>
-      
+
     </p-card>
 </div>
+
+
+<app-product-table  *ngIf="viewMode === 'table'"></app-product-table>

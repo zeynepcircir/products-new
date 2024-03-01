@@ -18,16 +18,16 @@ export class LayoutComponent implements OnInit {
   productList: ProductModel[] = [];
 
   ngOnInit(): void {}
-
+  
   openProductCardComponent() {
     this._router.navigate(['/product-card']);
   }
+
   openProductTableComponent() {
     this._router.navigate(['/product-table']);
   }
 
   getProducts(event: any) {
-    console.log('EMIT EDİLEN VERİ GELDİ', event);
     this.productService.selectedProductList(event);
   }
 }

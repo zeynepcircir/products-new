@@ -15,7 +15,7 @@ import { DialogService } from 'primeng/dynamicdialog';
   declarations: [
     ProductCardComponent,
     ProductDetailComponent,
-    ProductEditComponent,
+    ProductEditComponent
   ],
   imports: [
     CommonModule,

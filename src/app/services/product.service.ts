@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProductModel } from '../models/ProductModel';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { StringMapWithRename } from '@angular/compiler/src/compiler_facade_interface';
 
 @Injectable({
   providedIn: 'root',
