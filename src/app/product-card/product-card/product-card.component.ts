@@ -87,6 +87,34 @@ export class ProductCardComponent implements OnInit {
     }
   }
 
+
+  getProductsBySelectedCategory(event: ProductModel[]) {
+    this.productList = event;
+  }
+
+  ngAfterContentChecked() {
+    if (this._productService.data.value) {
+      this.productList = this._productService.data.value;
+    } 
+  }
+
+
+  // ngAfterContentChecked() {
+  //   if (this._productService.data.value) {
+  //     this.productList = this._productService.data.value;
+  //   } else {
+  //     this._productService.getProducts().subscribe((response) => {
+  //       this.productList = response;
+
+  //       this.productList?.forEach((pr) => {
+  //         if (!this.categoryList.includes(pr?.category + '')) {
+  //           this.categoryList.push(pr?.category + '');
+  //         }
+  //       });
+  //     });
+  //   }
+  // }
+
   route2productDetailComponent(product: ProductModel) {
     this._route.navigate(['/product-detail/' + product.title]);
   }

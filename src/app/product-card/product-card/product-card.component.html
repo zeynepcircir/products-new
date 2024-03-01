@@ -13,7 +13,7 @@
 
         <ng-template pTemplate="header">
 
-            <a (click)="route2productDetailComponent(product)"> <img alt="Card" [src]="" height="350px"
+            <a (click)="route2productDetailComponent(product)"> <img alt="Card" [src]="product?.image" height="350px"
                     style="object-fit: fill; padding: 0.8rem; border-bottom: 2px solid rgba(165, 165, 165, 0.809);">
             </a>
         </ng-template>

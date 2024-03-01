@@ -37,6 +37,10 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+
+  
+
+
   getCategories() {
     this.productService.getCategories().subscribe((response) => {
       this.categoryList = response;
