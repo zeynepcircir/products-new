@@ -1,25 +1,38 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProductModel } from '../models/ProductModel';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, finalize, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
+
+
+
 export class ProductService {
   productList: ProductModel[] = [];
   categoryList: string[] = [];
   data = new BehaviorSubject<ProductModel[] | null>(null);
+
+  private loadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public loading$ = this.loadingSubject.asObservable();
+
+
   constructor(private _http: HttpClient) {}
+
+
 
   getProducts(): Observable<ProductModel[]> {
     return this._http.get<ProductModel[]>('https://fakestoreapi.com/products');
   }
 
   getCategories(): Observable<string[]> {
+    this.loadingSubject.next(true);
     return this._http.get<string[]>(
-      'https://fakestoreapi.com/products/categories'
-    );
+      'https://fakestoreapi.com/products/categories').pipe(
+        finalize(() => this.loadingSubject.next(false)) // İstek tamamlandığında loading durumunu false olarak ayarla
+      );
+  
   }
 
   getCategoryProducts(selectedCategory: string): Observable<ProductModel[]> {
@@ -40,4 +53,13 @@ export class ProductService {
       )
     );
   }
+
+  deleteProducts(): Observable<ProductModel[]> {
+    return this._http.get<ProductModel[]>('https://fakestoreapi.com/products/6');
+  }
+
+  updateProducts(): Observable<ProductModel[]> {
+    return this._http.get<ProductModel[]>('https://fakestoreapi.com/products/7');
+  }
+
 }

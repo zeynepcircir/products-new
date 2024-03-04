@@ -1,16 +1,18 @@
 <div class="all ">
+    <p-progressSpinner ariaLabel="loading" *ngIf="!product"></p-progressSpinner>
     <div class="left" (click)="goBack()">
         <i class="pi pi-angle-left" style="font-size: 1.8rem"></i>
     </div>
     <div class="row" style="display: flex; justify-content: space-between; width: 100%;">
-        <div class="img" style="width: 50%; display: flex;
+        <div class="img" style=" width: 50%;
+        display: flex;
         justify-content: center;
-        align-items: center;">
-            <img alt="Card" [src]="product?.image" height="600px"
-                style="object-fit: fill; padding: 0.8rem; border: 2px solid rgba(165, 165, 165, 0.809);">
+        align-items: center;
+        border-right: 2px solid #efefef;">
+            <img alt="Card" [src]="product?.image" height="600px" style="object-fit: fill; padding: 0.8rem;">
         </div>
 
-        <div class="card" style="width: 50%; display: flex; flex-direction: column;">
+        <div class="card" style="width: 50%; display: flex; flex-direction: column; align-items: center;">
             <div class="card-header">
                 <h1>{{ product?.title }}</h1> <br>
                 <p-chip label="{{ product?.category }}" styleClass="p-mr-2"></p-chip> &nbsp;

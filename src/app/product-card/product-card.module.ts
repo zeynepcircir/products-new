@@ -10,12 +10,14 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DialogService } from 'primeng/dynamicdialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
     ProductCardComponent,
     ProductDetailComponent,
-    ProductEditComponent
+    ProductEditComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,8 @@ import { DialogService } from 'primeng/dynamicdialog';
     ChipModule,
     FormsModule,
     ReactiveFormsModule,
+    ProgressSpinnerModule,
+    TableModule
   ],
   providers: [DialogService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

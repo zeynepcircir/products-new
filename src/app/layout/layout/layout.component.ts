@@ -23,11 +23,8 @@ export class LayoutComponent implements OnInit {
     this._router.navigate(['/product-card']);
   }
 
-  openProductTableComponent() {
-    this._router.navigate(['/product-table']);
-  }
 
-  getProducts(event: any) {
+  getProducts(event: any) {   
     this.productService.selectedProductList(event);
   }
 }

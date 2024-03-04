@@ -9,7 +9,8 @@ import { ProductCardModule } from './product-card/product-card.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-import { AccordionModule } from 'primeng/accordion'; 
+import { AccordionModule } from 'primeng/accordion';
+import { TableModule } from 'primeng/table';
 
 const routes: Routes = [
   {
@@ -31,8 +32,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     ButtonModule,
     CardModule,
-    AccordionModule
-    
+    AccordionModule,
+    TableModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
