@@ -4,7 +4,7 @@
 <div class="button">
     <button (click)="toggleView('cards')"><i class="pi pi-table"></i></button>
     <button (click)="toggleView('table')"><i class="pi pi-bars"></i></button>
-</div>
+</div> <br>
 
 <div *ngIf="viewMode === 'cards'" class="card-container">
     <!-- <p-progressSpinner ariaLabel="loading" *ngIf="productList"></p-progressSpinner> -->
@@ -20,6 +20,7 @@
 
     </p-card>
 </div>
+
 
 <div *ngIf="viewMode === 'table'">
     <div>

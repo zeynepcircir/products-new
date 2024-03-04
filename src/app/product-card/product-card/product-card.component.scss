@@ -103,17 +103,38 @@
     margin-left: 6rem; 
 }
 
+
+
 .card {
-    cursor: pointer;
-    margin: 2rem; /* Kartlar arasındaki boşluğu ayarlar */
-    min-width: 360px;
-    max-width: 360px !important;
+    height: 650px;
+    width: 400px;
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: #ffffff;
     box-shadow: 2px 9px 14px 4px rgba(0,0,0,0.51);
     -webkit-box-shadow: 2px 9px 14px 4px rgba(0,0,0,0.51);
     -moz-box-shadow: 2px 9px 14px 4px rgba(0,0,0,0.51);
-    border: 2px solid lightgray;
-    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: .15s ease;
+    margin: 0;
+    scroll-snap-align: start;
+    clear: both;
+    position: relative;
+    margin-left: 35px;
+    margin-top: 30px;
 }
+
+.card:focus-within~.card, .card:hover~.card {
+    transform: translateX(10px);
+}
+
+.card:hover {
+    transform: translateY(-1rem);
+}
+
+
+
 
 @media screen and (max-width:768px){
     .card {

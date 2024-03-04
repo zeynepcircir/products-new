@@ -15,8 +15,10 @@
         <div class="card" style="width: 50%; display: flex; flex-direction: column; align-items: center;">
             <div class="card-header">
                 <h1>{{ product?.title }}</h1> <br>
-                <p-chip label="{{ product?.category }}" styleClass="p-mr-2"></p-chip> &nbsp;
-                <p-chip label="{{ product?.price }}" styleClass="p-mr-2"></p-chip>
+                <div class="tags">
+                    <p-chip label="{{ product?.category }}" styleClass="p-mr-2"></p-chip> &nbsp;
+                    <p-chip label="{{ product?.price }}" styleClass="p-mr-2"></p-chip>
+                </div>
             </div> <br>
             <div class="card-body">
                 <p class="description">{{ product?.description }}</p>

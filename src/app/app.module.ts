@@ -12,6 +12,7 @@ import { CardModule } from 'primeng/card';
 import { AccordionModule } from 'primeng/accordion';
 import { TableModule } from 'primeng/table';
 
+
 const routes: Routes = [
   {
     path: '',
