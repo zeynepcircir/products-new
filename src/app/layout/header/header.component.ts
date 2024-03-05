@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   @Output() productsBySelectedCategory = new EventEmitter<ProductModel[]>();
 
+
   constructor(
     private _http: HttpClient,
     private productService: ProductService,
@@ -26,22 +27,22 @@ export class HeaderComponent implements OnInit {
   }
 
   handleClick(event: string | null) {
-    if (event) {
       console.log('EVENTE TIKLANDI', event);
-      this.productService.getCategoryProducts(event).subscribe((response) => {
-        console.log('API RESPONSE GELDİ VE EMIT EDİLDİ', response);
         this._route.navigate(['/product-card/' + event]);
-      });
-    } else {
-      this.productService.getProducts().subscribe((response) => {
-        this._route.navigate(['/product-card/' + event]);
-      });
-    }
+    
   }
 
   getCategories() {
     this.productService.getCategories().subscribe((response) => {
       this.categoryList = response;
+      // Tüm ürünleri çekmek için
+      this.productService.getProducts().subscribe((products) => {
+        this.productsBySelectedCategory.emit(products);
+      });
     });
   }
+
+
+  
+
 }

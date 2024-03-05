@@ -4,6 +4,8 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
 
 @NgModule({
   declarations: [
@@ -15,6 +17,7 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
+    ProgressSpinnerModule,
     RouterModule.forChild([])
 
   ]

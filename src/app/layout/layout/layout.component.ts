@@ -10,21 +10,13 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  constructor(
-    private _router: Router,
-    private productService: ProductService
-  ) {}
+  constructor() {}
 
   productList: ProductModel[] = [];
 
   ngOnInit(): void {}
   
-  openProductCardComponent() {
-    this._router.navigate(['/product-card']);
-  }
 
 
-  getProducts(event: any) {   
-    this.productService.selectedProductList(event);
-  }
+
 }

@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  ActivatedRoute,
-  ActivationEnd,
-  NavigationEnd,
-  Router,
-} from '@angular/router';
+import {ActivatedRoute,NavigationEnd,Router} from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
 import { ProductModel } from 'src/app/models/ProductModel';
 import { ProductService } from 'src/app/services/product.service';
@@ -21,11 +16,7 @@ import { filter } from 'rxjs';
 })
 export class ProductCardComponent implements OnInit {
   viewMode: 'cards' | 'table' = 'cards';
-  products: any;
   productList: ProductModel[] = [];
-  categoryList: string[] = [];
-  selectedCategory: string = '';
-  onClose: any;
   categoryName: string = '';
 
   constructor(
@@ -59,47 +50,48 @@ export class ProductCardComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
-    this.primengConfig.ripple = true;
 
+  ngOnInit(): void {
+
+    this.primengConfig.ripple = true;
+  
     this._activatedRoute.paramMap.subscribe((params) => {
       this.categoryName = params.get('categoryName') ?? '';
       this.getProductByCategory();
     });
-
-    //url'deki değişimleri tespit ediyorum (categoryName parametresini almak için)
+  
+  
+    // URL'deki değişimleri tespit ediyorum (categoryName parametresini almak için)
     this._route.events
-      .pipe(filter((event) => event instanceof ActivationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
         console.log('EVENT: ', event);
-        if (!event) {
-          this.categoryName = (event as any).snapshot.params.categoryName;
+        if (event instanceof NavigationEnd) {
+          this.categoryName = this._activatedRoute.snapshot.paramMap.get('categoryName') || '';
           this.getProductByCategory();
         }
       });
   }
 
   getProductByCategory() {
-    this._productService.getProducts().subscribe((response) => {
-      this.productList = response.filter(
-        (element) => element.category === this.categoryName
-      );
-    });
+    if (this.categoryName) {
+      this._productService.getProducts().subscribe((response) => {
+        this.productList = response.filter(
+          (element) => element.category === this.categoryName
+        );
+      });
+    } else {
+      this._productService.getProducts().subscribe((response) => {
+        this.productList = response;
+      });
+    }
   }
 
-  // ngAfterContentChecked() {
-  //   if (this._productService.data.value) {
-  //     this.productList = this._productService.data.value;
-  //   }
-  // }
 
+  
+  
   route2productDetailComponent(product: ProductModel) {
     this._route.navigate(['/product-detail/' + product.title]);
   }
-
-  deleteProduct(product: ProductModel) {
-    this.productList = this.productList.filter((pr: ProductModel) => {
-      return pr.id !== product.id;
-    });
-  }
+  
 }

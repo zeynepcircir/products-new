@@ -1,32 +1,34 @@
 <div>
-    <app-layout></app-layout>
+    <app-layout>
+    </app-layout>
 </div>
 <div class="button">
     <button (click)="toggleView('cards')"><i class="pi pi-table"></i></button>
     <button (click)="toggleView('table')"><i class="pi pi-bars"></i></button>
 </div> <br>
 
-<div *ngIf="viewMode === 'cards'" class="card-container">
-    <!-- <p-progressSpinner ariaLabel="loading" *ngIf="productList"></p-progressSpinner> -->
-    <p-card appHighlight header="{{ product.title }}" [subheader]="product!.category!" styleClass="p-card-shadow"
+<div *ngIf="(viewMode === 'cards' && productList.length > 0) " class="card-container" >
+    <p-card appHighlight header="{{ product.title }}" [subheader]="product!.category!" styleClass="p-card-shadow" 
         *ngFor="let product of productList; let i = index;" class="card" [ngClass]="{'break-row': (i + 1) % 3 === 0 }">
-
         <ng-template pTemplate="header">
             <a (click)="route2productDetailComponent(product)">
                 <img alt="Card" [src]="product.image" height="350px"
                     style="object-fit: fill; padding: 0.8rem; border-bottom: 2px solid rgba(165, 165, 165, 0.809);">
             </a>
         </ng-template>
-
     </p-card>
 </div>
 
 
-<div *ngIf="viewMode === 'table'">
+<div *ngIf="!productList.length">
+    <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+</div>
+
+
+<div *ngIf="(viewMode === 'table' &&  productList.length > 0) else emptyData">
     <div>
-        <p-table appHighlight *ngIf="productList.length else emptyData" [value]="productList" [paginator]="true"
-            [rows]="5" [rowsPerPageOptions]="[5,10,25,50]" [scrollable]="true" styleClass="p-datatable-gridlines"
-            responsiveLayout="scroll">
+        <p-table appHighlight [value]="productList" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,25,50]"
+            [scrollable]="true" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
                     <th pResizableColumn pSortableColumn="id">{{ 'Id' }}<p-sortIcon field="id"></p-sortIcon>
@@ -62,20 +64,21 @@
                     <td>{{ product?.actions }}
                         <button (click)="show(product)" pButton pRipple type="button" label="Edit"
                             class="p-button-outlined p-button-secondary"></button> &nbsp;
-                        <button (click)="deleteProduct(product) " pButton pRipple type="button" label="Delete"
-                        class="p-button-outlined p-button-secondary"></button>
+                        <button pButton pRipple type="button" label="Delete"
+                            class="p-button-outlined p-button-secondary"></button>
                     </td>
                 </tr>
             </ng-template>
         </p-table>
     </div>
 
-    <ng-template #emptyData>
-        <h5>There is no datat in the table!</h5>
-    </ng-template>
 
 
 
     <app-product-table>
     </app-product-table>
 </div>
+
+
+<ng-template #emptyData>
+</ng-template>

@@ -26,13 +26,10 @@ export class ProductEditComponent implements OnInit {
   });
 
 
-  constructor(
-    private dynamicDialogRef: DynamicDialogRef,
-    dynamicDialogConfig: DynamicDialogConfig
-  ) {
+  constructor(private dynamicDialogRef: DynamicDialogRef,dynamicDialogConfig: DynamicDialogConfig) {
+
     console.log(dynamicDialogConfig.data);
     this.product = dynamicDialogConfig.data;
-
     this.profileForm.patchValue(dynamicDialogConfig.data);
   }
 
