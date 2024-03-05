@@ -3,6 +3,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProductModel } from 'src/app/models/ProductModel';
 import { ProductService } from 'src/app/services/product.service';
 import { PrimeNGConfig } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private _http: HttpClient,
-    private productService: ProductService
+    private productService: ProductService,
+    private _route: Router
   ) {}
 
   ngOnInit(): void {
@@ -28,18 +30,14 @@ export class HeaderComponent implements OnInit {
       console.log('EVENTE TIKLANDI', event);
       this.productService.getCategoryProducts(event).subscribe((response) => {
         console.log('API RESPONSE GELDİ VE EMIT EDİLDİ', response);
-        this.productsBySelectedCategory.emit(response);
+        this._route.navigate(['/product-card/' + event]);
       });
     } else {
       this.productService.getProducts().subscribe((response) => {
-        this.productsBySelectedCategory.emit(response);
+        this._route.navigate(['/product-card/' + event]);
       });
     }
   }
-
-
-  
-
 
   getCategories() {
     this.productService.getCategories().subscribe((response) => {

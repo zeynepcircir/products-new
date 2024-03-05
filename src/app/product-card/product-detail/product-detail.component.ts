@@ -17,7 +17,7 @@ import { MessageService } from 'primeng/api';
 export class ProductDetailComponent implements OnInit {
   productName: string = '';
   product: ProductModel | null = null;
-  productList: ProductModel[] = [];
+
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -37,11 +37,10 @@ export class ProductDetailComponent implements OnInit {
   getProductByProductTitle() {
     this._productService.getProducts().subscribe((response) => {
       //@ts-ignore
-      this.product = response.find((resp) => resp.title === this.productName);
+      this.product = response.find((element) => element.title === this.productName);
     });
   }
 
- 
   goBack() {
     this.location.back();
   }
