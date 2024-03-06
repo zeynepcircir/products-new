@@ -17,6 +17,15 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+    .p-datatable.p-datatable-gridlines .p-datatable-tbody > tr > td{
+       
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+     
+    }
 }
 
 :host ::ng-deep {
@@ -159,4 +168,5 @@
     display: flex;
     justify-content: flex-end;
     margin-right: 9rem;
+    
 }
