@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute,NavigationEnd,Router} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { PrimeNGConfig } from 'primeng/api';
 import { ProductModel } from 'src/app/models/ProductModel';
 import { ProductService } from 'src/app/services/product.service';
 import { ProductEditComponent } from '../product-edit/product-edit.component';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
-import { filter } from 'rxjs';
+import { Observable, elementAt, filter } from 'rxjs';
 
 @Component({
   selector: 'app-product-card',
@@ -35,39 +35,40 @@ export class ProductCardComponent implements OnInit {
     console.log(product);
     this.dialogService
       .open(ProductEditComponent, {
-        header: 'Choose a Product',
+        header: 'Edit Product',
         width: '70%',
         contentStyle: { 'max-height': '500px', overflow: 'auto' },
         baseZIndex: 10000,
         data: product,
       })
-      .onClose.subscribe((response: ProductModel) => {
-        let index = this.productList.findIndex((pr) => pr.id === response.id);
-
-        if (index !== -1) {
-          this.productList[index] = response;
+      .onClose.subscribe((updatedProduct: ProductModel) => {
+        if (updatedProduct) {
+          // Güncellenmiş ürün bilgisini alıp tablodaki ilgili ürünü güncelliyoruz
+          let index = this.productList.findIndex(pr => pr.id === updatedProduct.id);
+          if (index !== -1) {
+            this.productList[index] = updatedProduct;
+          }
         }
       });
   }
-
+  
 
   ngOnInit(): void {
-
     this.primengConfig.ripple = true;
-  
+
     this._activatedRoute.paramMap.subscribe((params) => {
       this.categoryName = params.get('categoryName') ?? '';
       this.getProductByCategory();
     });
-  
-  
+
     // URL'deki değişimleri tespit ediyorum (categoryName parametresini almak için)
     this._route.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event) => {
         console.log('EVENT: ', event);
         if (event instanceof NavigationEnd) {
-          this.categoryName = this._activatedRoute.snapshot.paramMap.get('categoryName') || '';
+          this.categoryName =
+            this._activatedRoute.snapshot.paramMap.get('categoryName') || '';
           this.getProductByCategory();
         }
       });
@@ -87,11 +88,21 @@ export class ProductCardComponent implements OnInit {
     }
   }
 
-
-  
-  
   route2productDetailComponent(product: ProductModel) {
     this._route.navigate(['/product-detail/' + product.title]);
   }
+
+  deleteProduct(id: string) {
+    this._productService.deleteProducts(id).subscribe(() => {
+      console.log("Ürün silindi");
+      const index = this.productList.findIndex(product => product.id);
+      if (index !== -1) {
+        this.productList.splice(index, 1);
+      }
+    });
+  }
   
+
+  
+ 
 }

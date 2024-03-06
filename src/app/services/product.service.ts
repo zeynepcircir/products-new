@@ -6,21 +6,16 @@ import { BehaviorSubject, Observable, finalize, map } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-
-
-
 export class ProductService {
   productList: ProductModel[] = [];
   categoryList: string[] = [];
   data = new BehaviorSubject<ProductModel[] | null>(null);
 
-  private loadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private loadingSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
   public loading$ = this.loadingSubject.asObservable();
 
-
   constructor(private _http: HttpClient) {}
-
-
 
   getProducts(): Observable<ProductModel[]> {
     return this._http.get<ProductModel[]>('https://fakestoreapi.com/products');
@@ -28,11 +23,11 @@ export class ProductService {
 
   getCategories(): Observable<string[]> {
     this.loadingSubject.next(true);
-    return this._http.get<string[]>(
-      'https://fakestoreapi.com/products/categories').pipe(
+    return this._http
+      .get<string[]>('https://fakestoreapi.com/products/categories')
+      .pipe(
         finalize(() => this.loadingSubject.next(false)) // İstek tamamlandığında loading durumunu false olarak ayarla
       );
-  
   }
 
   getCategoryProducts(selectedCategory: string): Observable<ProductModel[]> {
@@ -54,12 +49,15 @@ export class ProductService {
     );
   }
 
-  deleteProducts(): Observable<ProductModel[]> {
-    return this._http.get<ProductModel[]>('https://fakestoreapi.com/products/6');
+  deleteProducts(id: string): Observable<ProductModel[]> {
+    return this._http.delete<ProductModel[]>(
+      'https://fakestoreapi.com/products/' + id
+    );
   }
 
-  updateProducts(): Observable<ProductModel[]> {
-    return this._http.get<ProductModel[]>('https://fakestoreapi.com/products/7');
+  updateProducts(id: string, data: any): Observable<ProductModel[]> {
+    return this._http.post<ProductModel[]>(
+      'https://fakestoreapi.com/products/' + id, data);
+    
   }
-
 }

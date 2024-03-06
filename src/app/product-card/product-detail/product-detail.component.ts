@@ -13,13 +13,15 @@ import { MessageService } from 'primeng/api';
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss'],
+  providers: [DialogService, MessageService],
 })
 export class ProductDetailComponent implements OnInit {
   productName: string = '';
   product: ProductModel | null = null;
-
+  productList: ProductModel[] = [];
 
   constructor(
+    private primengConfig: PrimeNGConfig,
     private _activatedRoute: ActivatedRoute,
     private _productService: ProductService,
     private location: Location,
@@ -32,6 +34,8 @@ export class ProductDetailComponent implements OnInit {
     });
 
     this.getProductByProductTitle();
+
+
   }
 
   getProductByProductTitle() {
@@ -45,19 +49,24 @@ export class ProductDetailComponent implements OnInit {
     this.location.back();
   }
 
+
   show(product: ProductModel) {
     console.log(product);
     this.dialogService
       .open(ProductEditComponent, {
-        header: 'Choose a Product',
+        header: 'Edit Product',
         width: '70%',
         contentStyle: { 'max-height': '500px', overflow: 'auto' },
         baseZIndex: 10000,
         data: product,
       })
-      .onClose.subscribe((response: ProductModel) => {
-        if (response) {
-          this.product = response;
+      .onClose.subscribe((updatedProduct: ProductModel) => {
+        if (updatedProduct) {
+          // Güncellenmiş ürün bilgisini alıp tablodaki ilgili ürünü güncelliyoruz
+          let index = this.productList.findIndex(pr => pr.id === updatedProduct.id);
+          if (index !== -1) {
+            this.productList[index] = updatedProduct;
+          }
         }
       });
   }
