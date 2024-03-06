@@ -57,7 +57,7 @@ export class ProductService {
 
   updateProducts(id: string, data: any): Observable<ProductModel[]> {
     return this._http.post<ProductModel[]>(
-      'https://fakestoreapi.com/products/' + id, data);
-    
+      'https://fakestoreapi.com/products/' + id, data
+    );
   }
 }

@@ -44,14 +44,15 @@ export class ProductCardComponent implements OnInit {
       .onClose.subscribe((updatedProduct: ProductModel) => {
         if (updatedProduct) {
           // Güncellenmiş ürün bilgisini alıp tablodaki ilgili ürünü güncelliyoruz
-          let index = this.productList.findIndex(pr => pr.id === updatedProduct.id);
+          let index = this.productList.findIndex(
+            (pr) => pr.id === updatedProduct.id
+          );
           if (index !== -1) {
             this.productList[index] = updatedProduct;
           }
         }
       });
   }
-  
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
@@ -94,15 +95,11 @@ export class ProductCardComponent implements OnInit {
 
   deleteProduct(id: string) {
     this._productService.deleteProducts(id).subscribe(() => {
-      console.log("Ürün silindi");
-      const index = this.productList.findIndex(product => product.id);
+      console.log('Ürün silindi');
+      const index = this.productList.findIndex((product) => product.id);
       if (index !== -1) {
         this.productList.splice(index, 1);
       }
     });
   }
-  
-
-  
- 
 }

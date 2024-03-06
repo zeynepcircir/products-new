@@ -29,7 +29,7 @@ import { TableModule } from 'primeng/table';
     FormsModule,
     ReactiveFormsModule,
     ProgressSpinnerModule,
-    TableModule
+    TableModule,
   ],
   providers: [DialogService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -5,14 +5,12 @@ import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { FormGroup, FormControl } from '@angular/forms';
 
-
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.scss']
+  styleUrls: ['./product-edit.component.scss'],
 })
 export class ProductEditComponent implements OnInit {
-  
   product: ProductModel | null = null;
   value1: string = '';
 
@@ -22,12 +20,13 @@ export class ProductEditComponent implements OnInit {
     image: new FormControl(''),
     price: new FormControl(''),
     title: new FormControl(''),
-    id: new FormControl('')
+    id: new FormControl(''),
   });
 
-
-  constructor(private dynamicDialogRef: DynamicDialogRef,dynamicDialogConfig: DynamicDialogConfig) {
-
+  constructor(
+    private dynamicDialogRef: DynamicDialogRef,
+    dynamicDialogConfig: DynamicDialogConfig
+  ) {
     console.log(dynamicDialogConfig.data);
     this.product = dynamicDialogConfig.data;
     this.profileForm.patchValue(dynamicDialogConfig.data);
@@ -44,7 +43,4 @@ export class ProductEditComponent implements OnInit {
   save() {
     this.dynamicDialogRef.close(this.profileForm.getRawValue());
   }
-  
-
- 
 }

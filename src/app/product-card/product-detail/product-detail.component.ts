@@ -34,14 +34,14 @@ export class ProductDetailComponent implements OnInit {
     });
 
     this.getProductByProductTitle();
-
-
   }
 
   getProductByProductTitle() {
     this._productService.getProducts().subscribe((response) => {
       //@ts-ignore
-      this.product = response.find((element) => element.title === this.productName);
+      this.product = response.find(
+        (element) => element.title === this.productName
+      );
     });
   }
 
@@ -49,25 +49,21 @@ export class ProductDetailComponent implements OnInit {
     this.location.back();
   }
 
-
   show(product: ProductModel) {
     console.log(product);
-    this.dialogService
-      .open(ProductEditComponent, {
-        header: 'Edit Product',
-        width: '70%',
-        contentStyle: { 'max-height': '500px', overflow: 'auto' },
-        baseZIndex: 10000,
-        data: product,
-      })
-      .onClose.subscribe((updatedProduct: ProductModel) => {
-        if (updatedProduct) {
-          // Güncellenmiş ürün bilgisini alıp tablodaki ilgili ürünü güncelliyoruz
-          let index = this.productList.findIndex(pr => pr.id === updatedProduct.id);
-          if (index !== -1) {
-            this.productList[index] = updatedProduct;
-          }
-        }
-      });
+    const dialogRef = this.dialogService.open(ProductEditComponent, {
+      header: 'Edit Product',
+      width: '70%',
+      contentStyle: { 'max-height': '500px', overflow: 'auto' },
+      baseZIndex: 10000,
+      data: product,
+    });
+
+    dialogRef.onClose.subscribe((updatedProduct: ProductModel) => {
+      if (updatedProduct) {
+        // Güncellenmiş ürün bilgisini alıp karttaki ürün bilgisini güncelliyoruz
+        this.product = updatedProduct;
+      }
+    });
   }
 }
