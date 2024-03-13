@@ -1,6 +1,9 @@
 <img src="https://github.com/zeynepcircir/products-new/assets/81877446/e4feb34e-1499-4d8d-a969-4952e34cb73f" alt="Image 3" width="1000">
+-------------------------------------------------------------------------------------------------------------------------------------------
 <img src="https://github.com/zeynepcircir/products-new/assets/81877446/df0711c5-15b7-46aa-b388-97c883808ba4" alt="Image 3" width="1000">
+-------------------------------------------------------------------------------------------------------------------------------------------
 <img src="https://github.com/zeynepcircir/products-new/assets/81877446/68911715-028e-43d8-b5fe-591664aeb6e9" alt="Image 3" width="1000">
+-------------------------------------------------------------------------------------------------------------------------------------------
 <img src="https://github.com/zeynepcircir/products-new/assets/81877446/e3ff51fe-a220-4f45-a185-57ce31c81c22" alt="Image 3" width="1000">
 
 # ProductCrud
